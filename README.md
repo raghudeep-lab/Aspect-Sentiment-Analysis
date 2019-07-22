@@ -1,25 +1,25 @@
 # Aspect-Sentiment-Analysis
-## 运行方法
-1. 运行xml2text.py, 读取xml文件。
-2. 运行data2inputs.py, 将数据转化为网络可用输入。在这之前，我使用分词工具对文本进行了分词。
-3. 运行EmbeddingWriter.py, 生成必要的embedding矩阵。
-4. 训练模型，可以参考使用Main.py
+## How to run
+1. Run xml2text.py and read the xml file.
+2. Run data2inputs.py to convert the data into network-available input. Before that, I used the word segmentation tool to segment the text.
+3. Run EmbeddingWriter.py to generate the necessary embedding matrix.
+4. Training model, you can refer to the use of Main.py
 
-训练好自己的模型之后，可以用read_model.py加载训练好的模型，可以输出中间层attention的结果。
-## 常见问题
-1. 模型运行时，embedding层会报错，权重矩阵大小与定义大小不匹配等
-模型存在句子最大长度、aspect最大长度、embedding词表大小几个参数，这几个参数需要根据预处理的结果指定。出现上述的错误有两种可能：
-(1) laptop和restaurant之间的参数不同; (2) 我在预处理中做了分词，我们跑出的词表大小可能不同(为了节约存储空间，我只加载用到的词向量，所以根据词表裁减了词向量文件)，因此我们embedding层的参数也会不同。
+After training your own model, you can load the trained model with read_model.py and output the result of the intermediate layer attention.
+## common problem
+1. When the model is running, the embedding layer will report an error, and the weight matrix size does not match the defined size.
+The model has several parameters: the maximum length of the sentence, the maximum length of the aspect, and the size of the embedding vocabulary. These parameters need to be specified according to the result of the preprocessing. There are two possibilities for the above error:
+(1) The parameters between laptop and restaurant are different; (2) I made a participle in the preprocessing, and the size of the vocabulary we ran out may be different (in order to save storage space, I only load the word vector used, so according to The vocabulary cuts the word vector file), so the parameters of our embedding layer will be different.
 
-    laptop_data文件夹中提供了laptop数据集的分词结果，基于这几个文件运行data2input.py等后续程序，不需要改动程序里的参数。
+    The laptop_data folder provides the word segmentation result of the laptop data set. Based on these files, the subsequent programs such as data2input.py are run, and the parameters in the program do not need to be changed.
 
-    为了方便使用，后续我会把参数改为动态写入，这样就不必困扰于我给定的参数了。
+    For the convenience of use, I will change the parameters to dynamic writing later, so that I don't have to worry about the parameters I have given.
 
-训练好的模型会存在models文件夹下，预测的结果以及预测错误会报错在results文件夹。
+The trained model will exist under the models folder, and the predicted results as well as the predicted errors will be reported in the results folder.
 
-词向量使用如论文所说，来自glove官网。
+The word vector is used as described in the paper, from the official website of the gloss.
 
-这个任务仍有很多挑战，比如对于复杂句子（一句话存在相反的情感、双重否定）的识别效果并不理想。
-我们也会持续关注最新进展。
+There are still many challenges in this task, such as the recognition of complex sentences (the opposite emotion in one sentence, double negation) is not ideal.
+We will also continue to pay attention to the latest developments.
 
-如果在实验代码的过程中发现了问题，欢迎联系论文中的通讯邮箱。
+If you find a problem during the experiment code, please contact the email address in the paper.
